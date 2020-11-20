@@ -1,0 +1,12 @@
+{
+  "name": "classMate",
+  "displayName": "classMate",
+  "expo": {
+    "name": "classMate",
+    "slug": "classMate",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
