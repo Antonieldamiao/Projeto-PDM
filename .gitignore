@@ -2,6 +2,9 @@
 #
 classMate/.DS_Store
 
+#node_modules
+API/node_modules/*
+
 # Xcode
 #
 classMate/build/
