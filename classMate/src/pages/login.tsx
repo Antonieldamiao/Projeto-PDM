@@ -14,7 +14,7 @@ const Login: React.FC = () => {
   }
 
   function navtest(){
-    navigation.navigate('createClass');
+    navigation.navigate('mapa');
   }
 
   return (
