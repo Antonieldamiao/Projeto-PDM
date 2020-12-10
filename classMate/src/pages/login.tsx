@@ -13,6 +13,10 @@ const Login: React.FC = () => {
     navigation.navigate('form');
   }
 
+  function navtest(){
+    navigation.navigate('createClass');
+  }
+
   return (
     <View style={LoginStyles.container}>
       <Image style={LoginStyles.img} source={require('../images/logo.png')} />
@@ -23,7 +27,7 @@ const Login: React.FC = () => {
       <Text style={LoginStyles.textInput}>Senha</Text>
       <TextInput style={LoginStyles.input} secureTextEntry={true} />
 
-      <RectButton style={LoginStyles.loginButton}>
+      <RectButton style={LoginStyles.loginButton} onPress={navtest}>
         <Text style={LoginStyles.textButton}>Login</Text>
       </RectButton>
 
