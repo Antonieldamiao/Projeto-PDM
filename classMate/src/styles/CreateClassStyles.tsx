@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
     
     },
     boxParticipants:{
-        minHeight: 260,
-        maxHeight: 260,
+        minHeight: 240,
+        maxHeight: 240,
         width: "85%"
     },
 })

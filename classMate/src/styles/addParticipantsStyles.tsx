@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
         
     },
     boxParticipants:{
-        minHeight: 420,
-        maxHeight: 420,
+        minHeight: 400,
+        maxHeight: 400,
         width: "85%"
     },
     buttonAdd:{
