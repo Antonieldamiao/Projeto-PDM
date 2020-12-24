@@ -3,20 +3,22 @@ import { Image, ScrollView, View, TextInput, Text, TouchableOpacity, Alert, Butt
 import { RectButton } from 'react-native-gesture-handler';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import InputMask from '../components/InputMask';
-import styles from '../styles/classStyles';
+import styles from '../styles/chatStyles';
 import { Feather, AntDesign } from '@expo/vector-icons';
 import { formatDate } from '../utils/resources';
 import { useNavigation } from '@react-navigation/native';
 
-const Class: React.FC = () => {
+const ClassChat: React.FC = () => {
   const navigation = useNavigation();
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.boxImg}>
-        <Text style={styles.textHeader}> Salas</Text>
+      <View style={styles.header}>
+      <Image style={styles.imagem} source={require('../assests/imagem/cod.png')}></Image>
+        <Text style={styles.textHeader}> nome da sala</Text>
+        <Feather style={styles.icon} name="more-vertical" size={24} color="white" />
       </View>
-    
+      
           <View style={styles.boxParticipants}>
         <ScrollView horizontal={false}>
        {/* colocar o componente de render de sala aqui */}
@@ -31,4 +33,4 @@ const Class: React.FC = () => {
   );
 }
 
-export default Class;
+export default ClassChat;

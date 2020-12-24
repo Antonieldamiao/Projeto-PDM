@@ -7,6 +7,8 @@ import createClass from './pages/createClass';
 import addParticipant from './pages/addParticipants';
 import Mapa from './pages/map';
 import Class from './pages/class'
+import Chat from './pages/classChat'
+import classDetails from './pages/classDetails'
 
 
 const { Navigator, Screen } = createStackNavigator();
@@ -21,6 +23,8 @@ const Routes: React.FC = () => {
                 <Screen name="addParticipant" component={addParticipant} options={{ headerShown: false }} />
                 <Screen name="mapa" component={Mapa} options={{ headerShown: false }} />
                 <Screen name="class" component={Class} options={{ headerShown: false }} />
+                <Screen name="chat" component={Chat} options={{ headerShown: false }} />
+                <Screen name="classDetails" component={classDetails} options={{ headerShown: false }} />
             </Navigator>
         </NavigationContainer>
     );
