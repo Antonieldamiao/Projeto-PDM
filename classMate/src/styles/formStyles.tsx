@@ -10,16 +10,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    imgLogo:{
+    imgLogo: {
         width: 137,
         height: 147,
     },
-    textInput:{
+    textInput: {
         fontFamily: 'Allan_400Regular',
         color: '#808080',
         fontSize: 27,
     },
-    input:{
+    input: {
         borderStyle: 'solid',
         borderColor: '#4876FF',
         borderWidth: 1,
@@ -31,17 +31,17 @@ const styles = StyleSheet.create({
         fontSize: 19,
         marginBottom: 7,
     },
-    boxInputs:{
+    boxInputs: {
         alignItems: 'center',
     },
-    textRegister:{
+    textRegister: {
         fontSize: 27,
         fontFamily: 'Allan_400Regular',
         color: '#FFF',
         marginTop: '2%',
 
     },
-    registerButton:{
+    registerButton: {
         marginTop: '9%',
         backgroundColor: '#228B22',
         height: 47,
@@ -49,16 +49,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 21,
         elevation: 15,
+        marginBottom: '7%'
     },
-    textDate:{
+    textDate: {
         fontFamily: 'Jost_400Regular',
         paddingLeft: 11,
         fontSize: 19,
         marginTop: '2%',
     },
-    viewButtonImage:{
+    viewButtonImage: {
         right: '14%',
         marginBottom: '3%'
+    },
+    selectImg: {
+        width: 120,
+        height: 89,
+        right: '17%',
+        borderRadius: 5,
+        marginBottom: '2%',
+        marginRight: 20,
     }
 })
 

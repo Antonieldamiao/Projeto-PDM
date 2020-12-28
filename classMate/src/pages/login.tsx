@@ -10,11 +10,11 @@ const Login: React.FC = () => {
   const navigation = useNavigation();
 
   function navForm(){
-    navigation.navigate('classDetails');
+    navigation.navigate('form');
   }
 
   function navtest(){
-    navigation.navigate('class');
+    navigation.navigate('home');
   }
 
   return (
