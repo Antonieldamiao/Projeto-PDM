@@ -1,33 +1,41 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, View, TextInput, Text, TouchableOpacity, Alert, Button } from 'react-native';
+import { Image, ScrollView, View, TextInput, Text, TouchableOpacity } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import InputMask from '../components/InputMask';
-import styles from '../styles/classStyles';
+import ClassStyles from '../styles/classStyles';
 import { Feather, AntDesign } from '@expo/vector-icons';
 import { formatDate } from '../utils/resources';
 import { useNavigation } from '@react-navigation/native';
+import {Avatar, Title} from 'react-native-paper';
 
 const Class: React.FC = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.boxImg}>
-        <Text style={styles.textHeader}> Salas</Text>
+    <View style={ClassStyles.container}>
+      <View style={ClassStyles.header}>
+        <Avatar.Image style={ClassStyles.iconClass} source={{uri: 'https://s1.static.brasilescola.uol.com.br/be/conteudo/images/1-historia.jpg'}}/>
+        <Title style={ClassStyles.titleClass}>História 3º Ano</Title>
       </View>
-    
-          <View style={styles.boxParticipants}>
-        <ScrollView horizontal={false}>
-       {/* colocar o componente de render de sala aqui */}
-        </ScrollView>
+
+      <ScrollView>
+        <View style={ClassStyles.showMessage}>
+          <TouchableOpacity>
+            <Text style={ClassStyles.nameUser}>Guilherme Pereira</Text>
+            <Text style={ClassStyles.message}>Estou bem, mano.</Text>
+          </TouchableOpacity>
+
+        </View>
+
+      </ScrollView>
+      <View style={{ flexDirection: 'row' }}>
+        <TextInput style={ClassStyles.inputMessage} placeholder="Converse..."
+          multiline={true} />
+        <RectButton style={ClassStyles.buttonSend} >
+          <Feather style={ClassStyles.iconSend} name="send" size={35} color="#FFF" />
+        </RectButton>
       </View>
-      <RectButton style={styles.Button} onPress={() => navigation.navigate('createClass')}>
-      <AntDesign name="pluscircle" size={50} color="gray" />
-      </RectButton>
-      
-    
-    </ScrollView>
+    </View>
+
   );
 }
 

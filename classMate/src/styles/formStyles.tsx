@@ -68,6 +68,11 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: '2%',
         marginRight: 20,
+    },
+    errorText:{
+        fontFamily: 'Jost_400Regular',
+        fontSize: 17,
+        color: '#FF0000',
     }
 })
 

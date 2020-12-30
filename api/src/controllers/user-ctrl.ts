@@ -6,8 +6,7 @@ import { Document } from 'mongoose';
 import { Users } from '../utils/interfaces';
 
 
-export default class UserCtrl {
-
+export default class UserCtrl { 
 
     public static async add(req: Request, resp: Response): Promise<Response | any> {
         const {
@@ -79,7 +78,7 @@ export default class UserCtrl {
         const { email, senha } = req.body;
         const doc: Users = await userSchema.findOne({ email: email });
         console.log(doc);
-        if ((doc != null) && (doc.email == email) && (doc.senha == senha)) {
+        if ((doc != null) && (doc.email == email) && (doc.senha == senha)) {     
             return resp.status(200).json({ message: 'Ok!' });
         }
         return resp.status(500).json({ message: 'Senha ou email inválidos' });

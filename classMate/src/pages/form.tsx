@@ -3,7 +3,7 @@ import { Image, ScrollView, View, TextInput, Text, TouchableOpacity, Alert, Butt
 import { RectButton } from 'react-native-gesture-handler';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useNavigation } from '@react-navigation/native';
-import InputMask from '../components/InputMask';
+import InputMask from '../components/inputMask';
 import FormStyles from '../styles/formStyles';
 import { formatDate } from '../utils/resources';
 import api from '../utils/api';
@@ -18,6 +18,13 @@ const Form: React.FC = () => {
   const [nome, setNome] = useState('');
   const [sobrenome, setSobrenome] = useState('');
   const [senha, setSenha] = useState('');
+
+  const [errorDate, setErrorDate] = useState(false);
+  const [errorRequired, setErrorRiqured] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [errorUserExist, setErrorUserExist] = useState(false);
+  const [errorImage, setErrorImage] = useState(false);
 
   const [phone, setPhone] = useState('');
   const [isVisible, setVisible] = useState(false);
@@ -36,10 +43,73 @@ const Form: React.FC = () => {
       type: 'image/*',
       uri: foto,
     } as any);
+    let value = dateNow.split('/');
+    let year = value[2];
+    if ((email.trim().length <= 0) || (nome.trim().length <= 0) || (sobrenome.trim().length < 0)
+      || (phone.trim().length <= 0) || (senha.trim().length <= 0)) {
+      setErrorDate(false);
+      setErrorEmail(false);
+      setErrorPassword(false);
+      setErrorUserExist(false);
+      setErrorImage(false);
+      setErrorRiqured(true);
 
-    await api.post('/classmate/user', data);
-    navigation.navigate('home');
+    } else if (new Date().getFullYear() - Number(year) < 11) {
+      setErrorRiqured(false);
+      setErrorEmail(false);
+      setErrorPassword(false);
+      setErrorUserExist(false);
+      setErrorImage(false);
+      setErrorDate(true);
 
+    } else if (email.search('@') < 0) {
+      setErrorRiqured(false);
+      setErrorDate(false);
+      setErrorPassword(false);
+      setErrorUserExist(false);
+      setErrorImage(false);
+      setErrorEmail(true);
+
+    } else if (senha.length < 8) {
+      setErrorRiqured(false);
+      setErrorDate(false);
+      setErrorEmail(false);
+      setErrorUserExist(false);
+      setErrorImage(false);
+      setErrorPassword(true);
+    } else if (foto.trim().length <= 0) {
+      setErrorRiqured(false);
+      setErrorDate(false);
+      setErrorEmail(false);
+      setErrorPassword(false);
+      setErrorUserExist(false);
+      setErrorImage(true);
+
+    }
+    else {
+      await api.post('/classmate/user', data).then(
+        resp => {
+          navigation.reset({
+            index: 0,
+            routes:[
+              {
+                name:'form',
+              }
+            ]
+          })
+          navigation.navigate('home', { message: true });
+        }
+      ).catch(err => {
+        setErrorRiqured(false);
+        setErrorDate(false);
+        setErrorEmail(false);
+        setErrorPassword(false);
+        setErrorImage(false);
+        setErrorUserExist(true);
+      });
+      ;
+
+    }
   }
 
   async function selectImage() {
@@ -116,6 +186,25 @@ const Form: React.FC = () => {
         <DateTimePickerModal isVisible={isVisible} mode="date" onConfirm={dateConfirm} onCancel={hideDate} />
         <Text style={[FormStyles.textInput, { right: '25%' }]}>Senha</Text>
         <TextInput style={FormStyles.input} secureTextEntry={true} onChangeText={setSenha} />
+        {errorDate && (
+          <Text style={FormStyles.errorText}>Só é permitido usuários de 11 anos à cima</Text>
+        )}
+        {errorRequired && (
+          <Text style={FormStyles.errorText}>Preencha todos os campos</Text>
+        )}
+        {errorEmail && (
+          <Text style={FormStyles.errorText}>Informe um e-mail válido</Text>
+        )}
+        {errorPassword && (
+          <Text style={FormStyles.errorText}>A senha deve ter no mínimo 8 dígitos</Text>
+        )}
+        {errorUserExist && (
+          <Text style={FormStyles.errorText}>O e-mail já está cadastrado</Text>
+        )}
+        {errorImage && (
+          <Text style={FormStyles.errorText}>Escolha uma foto</Text>
+        )}
+
         <RectButton onPress={registerUser} style={FormStyles.registerButton}>
           <Text style={FormStyles.textRegister}>Cadastrar</Text>
         </RectButton>

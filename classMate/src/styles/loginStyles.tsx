@@ -49,6 +49,12 @@ const loginStyles = StyleSheet.create({
     },
     img:{
         top: 5,
+    },
+    errorText:{
+        fontFamily: 'Jost_400Regular',
+        fontSize: 17,
+        color: '#FF0000',
+        marginBottom: 10,
     }
 });
 
