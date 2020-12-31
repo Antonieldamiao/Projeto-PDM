@@ -3,6 +3,7 @@ import { View, TextInput, Text, Image } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import LoginStyles from '../styles/loginStyles';
+import { AsyncStorage } from 'react-native';
 import api from '../utils/api';
 
 
@@ -17,22 +18,24 @@ const Login: React.FC = () => {
 
   const navigation = useNavigation();
 
+
   function navForm() {
     navigation.navigate('form');
   }
 
   async function navLogin() {
-
+    const id = { email: email
+      , senha: password }
+      const convert = JSON.stringify(id)
+      
     if ((email.trim().length <= 0) || (password.trim().length <= 0)) {
       setErrorAcess(false);
       setErrorRequered(true);
     } else {
-      await api.post('http://192.168.0.108:8080/classmate/user', { email: email, senha: password }).then(
+      await api.get('http://192.168.0.108:8080/classmate/user/'+convert ).then(
         resp => {
           console.log(resp.status)
-       
-          const doc = resp.data
-          console.log(doc.foto)
+          console.log(resp.data.email)
           navigation.reset({
             index: 0,
             routes: [
@@ -41,7 +44,18 @@ const Login: React.FC = () => {
               }
             ],
           })
-          navigation.navigate('home' , doc);
+            try {
+               AsyncStorage.setItem(
+                'dados',
+                JSON.stringify(resp.data)
+              )
+            } catch (error) {
+              // Error saving data
+            }
+            AsyncStorage.getItem('dados' ,(err, result) => {
+              console.log(result);
+            })
+          navigation.navigate('home');
         }
       ).catch(
         err=>{

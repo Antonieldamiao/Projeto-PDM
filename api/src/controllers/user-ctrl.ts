@@ -81,6 +81,8 @@ export default class UserCtrl {
 
     public static async search(req: Request, resp: Response): Promise<Response | any> {
         const { email, senha } = JSON.parse(req.params.id);
+        console.log(email)
+        console.log(senha)
 
         const doc: Users | any = await userSchema.findOne({ email: email });
 

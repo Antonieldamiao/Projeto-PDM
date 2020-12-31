@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { ScrollView, View, Modal, Text, Image, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Avatar, Title} from 'react-native-paper';
 import HeaderSearch from '../components/headerSearch';
 import HomeStyle from '../styles/homeStyles';
+
 import { ObjectRoutes } from '../utils/interfaces';
 
 const Home: React.FC = () => {
@@ -13,10 +14,6 @@ const Home: React.FC = () => {
 
   const [visible, setVisible] = useState(true);
   const route = useRoute();
-  const message = route.params;
-  const doc = route.params;
-
-  console.log("doc" ,doc)
 
 
   return (
