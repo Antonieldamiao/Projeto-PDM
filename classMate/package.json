@@ -22,6 +22,7 @@
         "expo-image-picker": "~9.1.1",
         "expo-splash-screen": "~0.6.2",
         "expo-updates": "~0.3.3",
+        "pkg": "^4.4.9",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-leaflet": "^3.0.5",

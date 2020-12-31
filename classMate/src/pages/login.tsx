@@ -27,9 +27,12 @@ const Login: React.FC = () => {
       setErrorAcess(false);
       setErrorRequered(true);
     } else {
-      await api.post('/classmate/user', { email: email, senha: password }).then(
+      await api.post('http://192.168.0.108:8080/classmate/user', { email: email, senha: password }).then(
         resp => {
           console.log(resp.status)
+       
+          const doc = resp.data
+          console.log(doc.foto)
           navigation.reset({
             index: 0,
             routes: [
@@ -38,7 +41,7 @@ const Login: React.FC = () => {
               }
             ],
           })
-          navigation.navigate('home');
+          navigation.navigate('home' , doc);
         }
       ).catch(
         err=>{

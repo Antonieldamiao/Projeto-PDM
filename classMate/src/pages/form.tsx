@@ -87,7 +87,7 @@ const Form: React.FC = () => {
 
     }
     else {
-      await api.post('/classmate/user', data).then(
+      await api.post('http://192.168.0.108:8080/classmate/user', data).then(
         resp => {
           navigation.reset({
             index: 0,

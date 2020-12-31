@@ -14,8 +14,10 @@ const Home: React.FC = () => {
   const [visible, setVisible] = useState(true);
   const route = useRoute();
   const message = route.params;
+  const doc = route.params;
 
-  console.log(message)
+  console.log("doc" ,doc)
+
 
   return (
     <View style={HomeStyle.container}>
