@@ -1,11 +1,9 @@
-import mongoose from "../config/connection"
-import {ObjectId} from 'mongoose';
 import User from "../models/entities/user";
 import Message from "../models/entities/message";
+import { Document } from "mongoose";
 
 
-interface Users {
-    _id: ObjectId;
+interface Users extends Document {
     email: string;
     nome: string;
     sobrenome: string;
@@ -15,8 +13,7 @@ interface Users {
     foto: string;
 }
 
-interface Rooms{
-    _id: ObjectId;
+interface Rooms extends Document {
     codigo: string;
     nome: string;
     descricao: string;
@@ -26,7 +23,16 @@ interface Rooms{
     mensagens: Message[];
 }
 
+interface Messages extends Document {
+    id: string;
+    corpo: string;
+    data: Date;
+    hora: Date;
+    emailUser: string;
+}
+
 export {
     Users,
     Rooms,
+    Messages,
 }
